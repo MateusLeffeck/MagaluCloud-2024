@@ -1,1 +1,3 @@
-# MagaluCloud-2024
+# Hackathon-MagaluCloud
+
+## Interface de criar VMs automatica
