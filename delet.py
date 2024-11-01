@@ -26,6 +26,3 @@ def deletar_instancia(id_instancia, dias_espera):
         print("Instância deletada com sucesso!")
     else:
         print("Erro ao deletar a instância:", response.status_code)
-
-# Exemplo de uso
-deletar_instancia("ff75e6cc-abbd-43d7-9ad6-2b2e013980a7", 1)  # Aguarda 1 dia antes de deletar

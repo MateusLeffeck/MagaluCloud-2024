@@ -39,7 +39,8 @@ def inserir(caminho_csv):
     nome_instancia = last_row['Instancia']
     tipo_maquina = last_row['Computador']
     zona_vm = last_row['IP']  # Ajuste conforme necessário, caso o campo 'IP' represente a zona
-    
+    dias = int(last_row['Dias'])  # Pega o número de dias do CSV para uso na função `deletar_instancia`
+
     # Obter o ID do tipo de máquina
     id_tipo_machine = machine_types.get(tipo_maquina)
 
@@ -62,5 +63,12 @@ def inserir(caminho_csv):
     # Enviar requisição para criar a VM
     response = requests.post(url, headers=headers, data=json.dumps(dados))
 
-    # Verificar a resposta
-    response.json[]
+    # Verificar a resposta e retornar o ID da instância criada
+    if response.status_code == 201:
+        instancia_id = response.json().get('id')
+        print(f"Instância '{nome_instancia}' criada com sucesso! ID: {instancia_id}")
+        return instancia_id, dias  # Retorna o ID da instância e o número de dias
+    else:
+        print(f"Erro ao criar a instância '{nome_instancia}':", response.status_code)
+        print("Resposta:", response.json())
+        return None, None
